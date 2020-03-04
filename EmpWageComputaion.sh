@@ -3,17 +3,19 @@
 
 state=$((RANDOM%3))
 EmpRatePerHour=20
-if [[ $state -eq 1 ]]
-then
+case $state in
+	"1")
 	EmpWorkHours=8
-elif [[ $state -eq 2 ]]
-then
+	;;
+	"2")
 	EmpWorkHours=4
-else
+	;;
+	*)
 	EmpWorkHours=0
-fi
+	;;
+esac
 
-salary=$((EmpWorkHours * EmpRatePerHour))
+salary=$(( $EmpRatePerHour*$EmpWorkHours ))
 
 if [[ $salary -eq 0 ]]
 then
