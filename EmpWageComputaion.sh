@@ -1,20 +1,23 @@
 #!/bin/bash -x
 #Welcome to Employee Wage Computation Program
 
-function Attendence() {
-state=$((RANDOM%2))
-if [ $state == 1 ]
+state=$((RANDOM%3))
+EmpRatePerHour=20
+if [[ $state -eq 1 ]]
 then
-	echo employee is present
-	DailyWage
+	EmpWorkHours=8
+elif [[ $state -eq 2 ]]
+then
+	EmpWorkHours=4
 else
-	echo employee is absent
+	EmpWorkHours=0
 fi
-}
-function DailyWage() {
-	EmpRatePerHour=20
-	WorkingHours=8
-	Salary=$(($EmpRatePerHour * $WorkingHours))
-	echo $Salary
-}
-Attendence
+
+salary=$((EmpWorkHours * EmpRatePerHour))
+
+if [[ $salary -eq 0 ]]
+then
+	echo "Employee is absent"
+else
+	echo "salary of employee: "$salary
+fi
