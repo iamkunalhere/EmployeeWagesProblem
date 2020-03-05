@@ -16,6 +16,12 @@ esac
 echo $EmpHours
 }
 
+function calcDailyWage() {
+	local EmpHours=$1
+	wage=$(($EmpHours*$EmpRatePerHour))
+	echo $wage
+}
+
 EmpRatePerHour=30
 TotalWorkingDays=20
 MaxHoursInMonth=100
@@ -38,10 +44,13 @@ do
 		echo "Employee is PartTime"
 	fi
 	echo "Employee works for $EmpHours hours"
-	echo "-----------------------------------"
-	salary=$(($salary+$EmpHours*$EmpRatePerHour))
 	TotalWorkHours=$(($TotalWorkHours+$EmpHours))
+	EmpDailyWage[$days]="$( calcDailyWage $EmpHours )"
+	echo "Todays wage of Employee is ${EmpDailyWage[$days]}"
+	echo "-------------------------------------"
 done
 
+salary="$( calcDailyWage $TotalWorkHours )"
 echo "Employee works for $TotalWorkHours hours in 20 days"
 echo "$salary is salary of employee in a month"
+echo ""
