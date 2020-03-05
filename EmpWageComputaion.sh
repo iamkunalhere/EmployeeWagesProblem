@@ -50,7 +50,10 @@ do
 	echo "-------------------------------------"
 done
 
+echo "Total Days ${!EmpDailyWage[@]}"
+echo "Daily Wage ${EmpDailyWage[@]}"
+echo "-------------------------------------"
 salary="$( calcDailyWage $TotalWorkHours )"
 echo "Employee works for $TotalWorkHours hours in 20 days"
 echo "$salary is salary of employee in a month"
-echo ""
+
